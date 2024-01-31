@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { useStore } from 'effector-react'
+
 import { $mode } from '@/context/mode'
 import styles from '@/styles/header/index.module.scss'
 
 const HeaderTop = () => {
+  const { toggleOpen, open, closePopup } = usePopup()
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
@@ -20,7 +22,6 @@ const HeaderTop = () => {
           <span />
           <span />
         </button>
-
         <nav
           className={`${styles.header__nav} ${
             open ? styles.open : ''
