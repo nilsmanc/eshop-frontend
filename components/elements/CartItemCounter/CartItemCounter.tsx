@@ -2,6 +2,8 @@ import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import { ICartItemCounterProps } from '@/types/shopping-cart'
+import MinusSvg from '../MinusSvg/MinusSvg'
+import PlusSvg from '../PlusSvg/PlusSvg'
 import { $mode } from '@/context/mode'
 import { updateCartItemFx } from '@/app/api/shopping-cart'
 import { updateCartItemCount } from '@/context/shopping-cart'
@@ -78,7 +80,9 @@ const CartItemCounter = ({
     <div
       className={`${styles.cart__popup__list__item__counter} ${darkModeClass}`}
     >
-      <button disabled={disableDecrease} onClick={decrease}></button>
+      <button disabled={disableDecrease} onClick={decrease}>
+        <MinusSvg />
+      </button>
       <span>
         {spinner ? (
           <span
@@ -89,7 +93,9 @@ const CartItemCounter = ({
           count
         )}
       </span>
-      <button disabled={disableIncrease} onClick={increase}></button>
+      <button disabled={disableIncrease} onClick={increase}>
+        <PlusSvg />
+      </button>
     </div>
   )
 }
