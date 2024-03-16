@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import CrumbArrowSvg from '@/components/elements/CrumbArrowSvg/CrumbArrowSvg'
+import { ICrumbProps } from '@/types/common'
 import { $mode } from '@/context/mode'
 import styles from '@/styles/breadcrumbs/index.module.scss'
 
@@ -10,7 +11,7 @@ const Crumb = ({
   textGenerator,
   href,
   last = false,
-}: any) => {
+}: ICrumbProps) => {
   const [text, setText] = useState(defaultText)
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
