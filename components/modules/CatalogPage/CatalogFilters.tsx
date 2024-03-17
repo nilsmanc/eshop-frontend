@@ -1,12 +1,23 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
+import CatalogFiltersDesktop from './CatalogFiltersDesktop'
 import { ICatalogFiltersProps } from '@/types/catalog'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-
+import {
+  $boilerManufacturers,
+  $partsManufacturers,
+  setBoilerManufacturersFromQuery,
+  setPartsManufacturersFromQuery,
+} from '@/context/boilerParts'
 import { useStore } from 'effector-react'
 import { useRouter } from 'next/router'
 import { getQueryParamOnFirstRender } from '@/utils/common'
+import CatalogFiltersMobile from './CatalogFiltersMobile'
+import {
+  checkQueryParams,
+  updateParamsAndFilters,
+  updateParamsAndFiltersFromQuery,
+} from '@/utils/catalog'
 
 const CatalogFilters = ({
   priceRange,
