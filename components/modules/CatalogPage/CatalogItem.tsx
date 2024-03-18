@@ -5,6 +5,8 @@ import { $mode } from '@/context/mode'
 import { IBoilerPart } from '@/types/boilerparts'
 import { formatPrice } from '@/utils/common'
 import { $shoppingCart } from '@/context/shopping-cart'
+import CartHoverCheckedSvg from '@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg'
+import CartHoverSvg from '@/components/elements/CartHoverSvg/CartHoverSvg'
 import spinnerStyles from '@/styles/spinner/index.module.scss'
 import { toggleCartItem } from '@/utils/shopping-cart'
 import { $user } from '@/context/user'
@@ -45,7 +47,7 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
         {spinner ? (
           <div className={spinnerStyles.spinner} style={{ top: 6, left: 6 }} />
         ) : (
-          <span></span>
+          <span>{isInCart ? <CartHoverCheckedSvg /> : <CartHoverSvg />}</span>
         )}
       </button>
     </li>

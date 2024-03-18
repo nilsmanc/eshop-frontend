@@ -7,11 +7,16 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { $mode } from '@/context/mode'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { IDashboardSlider } from '@/types/dashboard'
 import skeletonStyles from '@/styles/skeleton/index.module.scss'
 import { formatPrice } from '@/utils/common'
 import styles from '@/styles/dashboard/index.module.scss'
 
-const DashboardSlider = ({ items, spinner, goToPartPage }: any) => {
+const DashboardSlider = ({
+  items,
+  spinner,
+  goToPartPage,
+}: IDashboardSlider) => {
   const isMedia768 = useMediaQuery(768)
   const isMedia1366 = useMediaQuery(1366)
   const isMedia800 = useMediaQuery(800)
