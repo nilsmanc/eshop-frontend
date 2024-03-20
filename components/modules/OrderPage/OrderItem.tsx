@@ -16,11 +16,8 @@ const OrderItem = ({ item }: { item: IShoppingCartItem }) => {
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
   const spinnerDarkModeClass =
     mode === 'dark' ? '' : `${spinnerStyles.dark_mode}`
-  const { price, decreasePrice, deleteCartItem, increasePrice } = usePrice(
-    item.count,
-    item.partId,
-    item.price
-  )
+  const { price, spinner, decreasePrice, deleteCartItem, increasePrice } =
+    usePrice(item.count, item.partId, item.price)
 
   return (
     <li className={styles.order__cart__list__item}>
@@ -79,7 +76,14 @@ const OrderItem = ({ item }: { item: IShoppingCartItem }) => {
           className={styles.order__cart__list__item__delete}
           onClick={deleteCartItem}
         >
-          <div>'Удалить'</div>
+          {spinner ? (
+            <span
+              className={`${spinnerStyles.spinner} ${spinnerDarkModeClass}`}
+              style={{ top: '-13px', left: '-30px', width: 25, height: 25 }}
+            />
+          ) : (
+            'Удалить'
+          )}
         </button>
       </div>
     </li>

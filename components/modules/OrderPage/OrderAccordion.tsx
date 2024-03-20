@@ -4,7 +4,10 @@ import { useState } from 'react'
 import { $mode } from '@/context/mode'
 import { $shoppingCart, $totalPrice } from '@/context/shopping-cart'
 import { IOrderAccordionProps } from '@/types/order'
+import DoneSvg from '@/components/elements/DoneSvg/DoneSvg'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import EditSvg from '@/components/elements/EditSvg/EditSvg'
+import CartPopupItem from '../Header/CartPopup/CartPopupItem'
 import OrderItem from './OrderItem'
 import { formatPrice } from '@/utils/common'
 import styles from '@/styles/order/index.module.scss'
@@ -36,14 +39,20 @@ const OrderAccordion = ({
         className={`${styles.order__cart__title} ${darkModeClass}`}
       >
         <h3 className={`${styles.order__cart__title__text} ${darkModeClass}`}>
-          {showDoneIcon && <span></span>}
+          {showDoneIcon && (
+            <span>
+              <DoneSvg />
+            </span>
+          )}
           Корзина
         </h3>
         <button
           className={styles.order__cart__title__btn}
           onClick={openAccordion}
         >
-          <span></span>
+          <span>
+            <EditSvg />
+          </span>
           {isMedia550 ? '' : 'Редактировать'}
         </button>
       </motion.div>
@@ -66,7 +75,7 @@ const OrderAccordion = ({
                 {shoppingCart.length ? (
                   shoppingCart.map((item) =>
                     isMedia550 ? (
-                      <div key={item.id} />
+                      <CartPopupItem key={item.id} item={item} />
                     ) : (
                       <OrderItem item={item} key={item.id} />
                     )
