@@ -3,7 +3,8 @@ import { useStore } from 'effector-react'
 import { useState } from 'react'
 import { $boilerPart } from '@/context/boilerPart'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
+import PartImagesItem from './PartImagesItem'
+import PartSlider from './PartSlider'
 import styles from '@/styles/part/index.module.scss'
 
 const PartImagesList = () => {
@@ -16,14 +17,25 @@ const PartImagesList = () => {
 
   return (
     <div className={styles.part__images}>
-      <div className={styles.part__images__main}>
-        <img src={currentImgSrc || images[0]} alt={boilerPart.name} />
-      </div>
-      <ul className={styles.part__images__list}>
-        {images.map((item, i) => (
-          <div></div>
-        ))}
-      </ul>
+      {isMobile ? (
+        <PartSlider images={images} />
+      ) : (
+        <>
+          <div className={styles.part__images__main}>
+            <img src={currentImgSrc || images[0]} alt={boilerPart.name} />
+          </div>
+          <ul className={styles.part__images__list}>
+            {images.map((item, i) => (
+              <PartImagesItem
+                key={i}
+                alt={`image-${i + 1}`}
+                callback={setCurrentImgSrc}
+                src={item}
+              />
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
