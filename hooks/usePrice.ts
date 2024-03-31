@@ -1,4 +1,6 @@
+import { useStore } from 'effector-react'
 import { useEffect, useState } from 'react'
+import { removeFromCartFx } from '@/app/api/shopping-cart'
 import { removeItemFromCart, updateTotalPrice } from '@/utils/shopping-cart'
 
 export const usePrice = (
@@ -6,6 +8,7 @@ export const usePrice = (
   partId: number,
   initialPrice: number
 ) => {
+  const spinner = useStore(removeFromCartFx.pending)
   const [price, setPrice] = useState(initialPrice)
 
   useEffect(() => {
@@ -20,5 +23,5 @@ export const usePrice = (
   const decreasePrice = () => setPrice(price - initialPrice)
   const deleteCartItem = () => removeItemFromCart(partId)
 
-  return { price, increasePrice, decreasePrice, deleteCartItem }
+  return { price, spinner, increasePrice, decreasePrice, deleteCartItem }
 }
